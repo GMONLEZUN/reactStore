@@ -1,5 +1,6 @@
 import { Card, CardHeader, CardBody, CardFooter, Text, Heading, Button } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
+import ItemCount from './ItemCount'
 // eslint-disable-next-line react/prop-types
 const Item = ({id, name, description, stock}) => {
   return (
@@ -18,6 +19,7 @@ const Item = ({id, name, description, stock}) => {
             </Button>
         </Link>
         <Button>Agregar</Button>
+        <ItemCount/>
         </CardFooter>
   </Card>
   )
