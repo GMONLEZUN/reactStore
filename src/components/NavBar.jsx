@@ -2,7 +2,6 @@ import {
     Menu,
     MenuButton,
     MenuList,
-    MenuItem,
     Button,
     Flex,
     Box,
@@ -11,8 +10,22 @@ import {
 import { ChevronDownIcon } from '@chakra-ui/icons'
 import CartWidget from './CartWidget'
 import { Link } from 'react-router-dom'
+import { getData } from '../utils/getData'
+import { useEffect, useState } from 'react'
+import NavBarItem from './NavBarItem'
 
 const NavBar = () => {
+    const [categories, setCategories] = useState()
+    useEffect(()=>{
+        getData()
+        .then((data)=>{
+            let auxCat = [];
+            data.forEach(p => auxCat.push(p.category))
+            setCategories(new Set(auxCat))
+        })
+      },[])
+
+
   return (
     <Flex>
         <Link to={"/"}>
@@ -25,28 +38,16 @@ const NavBar = () => {
             <Menu>
                 <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>Actions</MenuButton>
                 <MenuList>
-                    <MenuItem>
-                        <Link to={`/category/${'catA'}`}>
-                        Categoría A
-                        </Link>
-                    </MenuItem>
-                    <MenuItem>
-                        <Link to={`/category/${'catB'}`}>
-                            Categoría B
-                        </Link>
-                    </MenuItem>
-                    <MenuItem>
-                        <Link to={`/category/${'catC'}`}>
-                            Categoría C
-                        </Link>
-                    </MenuItem>
-                    <MenuItem>
-                        <Link to={`/category/${'catAb'}`}>
-                            Sobre nosotros
-                        </Link>
-                    </MenuItem>
+                   {categories && <NavBarItem categories = {categories}/>} 
                 </MenuList>
             </Menu>
+        </Box>
+        <Box>
+            <Link to={`/contact`}>
+                <Button marginLeft='5px'>
+                    Contacto
+                </Button>
+            </Link>
         </Box>
         <Spacer />
         <Box>

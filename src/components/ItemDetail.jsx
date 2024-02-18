@@ -1,41 +1,41 @@
+/* eslint-disable react/prop-types */
 import { Card, CardBody, CardFooter, CardHeader, Center, Heading, Text } from "@chakra-ui/react";
-import { useParams } from "react-router-dom"
 import ItemCount from "./ItemCount";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 
-// eslint-disable-next-line react/prop-types
-const ItemDetail = ({products}) => {
+const ItemDetail = ({prods}) => {
     const {id} = useParams();
-    let filteredProducts;
-    if (products) {
-        // eslint-disable-next-line react/prop-types
-        filteredProducts = products.filter(p => p.id == id);
-    }
+    const [prod, setProds] = useState({})
+    useEffect(() => {
+        const filteredProds = prods.filter((p)=>p.id == id)
+         setProds(filteredProds[0])
+    }, [id, prods])
+    
+    
 
   return (
-    <div>
-        {filteredProducts.map(p =>{
-            return(
-                <div key={p.id}>
-                    <Center p='1rem'>
-                        <Card>
-                            <CardHeader>
-                                <Heading size='md'>{p.name}</Heading>
-                            </CardHeader>
-                            <CardBody>
-                                <Text>{p.description}</Text>
-                                <Text>{p.category}</Text>
-                            </CardBody>
-                            <CardFooter>
-                                <ItemCount/>
-                            </CardFooter>
-                        </Card>
-                    </Center>
-                </div>
-            )
-        })}
-    </div>
-  )
+    <>
+            <div key={prod.id}>
+                <Center p='1rem'>
+                    <Card>
+                        <CardHeader>
+                            <Heading size='md'>{prod.name}</Heading>
+                        </CardHeader>
+                        <CardBody>
+                            <Text>{prod.description}</Text>
+                            <Text>{prod.category}</Text>
+                        </CardBody>
+                        <CardFooter>
+                            <ItemCount/>
+                        </CardFooter>
+                    </Card>
+                </Center>
+            </div>
+    </>
+        
+    )
 }
 
 export default ItemDetail
