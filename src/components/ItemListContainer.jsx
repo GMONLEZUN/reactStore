@@ -34,8 +34,10 @@ const ItemListContainer = () => {
 
   return (
   <>
-    <Center p='1rem'>
-      <Grid templateColumns='repeat(5, 1fr)' gap={6}>
+    <Center px='160px' mt='80px'>
+      <Grid 
+        templateColumns='repeat(5, 1fr)' 
+        gap={6}>
           <ItemList 
             productos = {prods}/>
       </Grid>

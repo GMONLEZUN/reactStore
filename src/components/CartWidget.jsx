@@ -2,9 +2,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { Box, Flex, Spacer } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { CartContext } from '../context/CartContext'
 
 
 const CartWidget = () => {
+  const {cartQty} = useContext(CartContext)
+  console.log(cartQty())
   return (
     <div>
         <Flex>
@@ -15,7 +19,7 @@ const CartWidget = () => {
             </Box>
             <Spacer/>
             <Box>
-                <span>5</span>
+                <span>{cartQty()}</span>
             </Box>
         </Flex>
     </div>
