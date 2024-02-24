@@ -1,23 +1,24 @@
 /* eslint-disable react/prop-types */
-import { MenuItem } from "@chakra-ui/react"
+import { Button } from "@chakra-ui/react"
 import { Link } from "react-router-dom"
 
 const NavBarItem = ({categories}) => {
-    console.log(categories)
+
     const categoriesArr = [...categories]
     console.log(categoriesArr)
+    console.log(categories)
   return (
     <>
         {
-            categoriesArr.map(category=>{
+            categoriesArr.map((category)=>{
                 return(
                     <Link to={`/category/${category}`} key={category}>
-                        <MenuItem >
+                        <Button >
                                 <span>{category}</span>
-                        </MenuItem>
+                        </Button>
                     </Link>
-            )
-        })
+                )
+            })
         }
     </>
     

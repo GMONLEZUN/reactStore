@@ -8,7 +8,7 @@ import { CartContext } from '../context/CartContext'
 
 const CartWidget = () => {
   const {cartQty} = useContext(CartContext)
-  console.log(cartQty())
+
   return (
     <div>
         <Flex>

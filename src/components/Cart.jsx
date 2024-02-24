@@ -2,6 +2,7 @@ import { useContext } from "react"
 import { CartContext } from "../context/CartContext"
 import CartItem from "./CartItem"
 import { Button } from "@chakra-ui/react"
+import { Link } from "react-router-dom"
 
 const Cart = () => {
   const { cart, cartQty, totalPrice, emptyCart } = useContext(CartContext)
@@ -9,12 +10,10 @@ const Cart = () => {
     <>
         {cart.map( (p) =>{
             return (
-                <>
                     <CartItem key={p.id}
                             item={p}
                     >
                     </CartItem>
-                </>
             )
         }
         )}
@@ -22,6 +21,7 @@ const Cart = () => {
         <p>Total: ${totalPrice()}</p>
 
         <Button onClick={emptyCart}>Vaciar Carrito</Button>
+        <Link to='/checkout'>Finalizar compra</Link>
     </>
   )
 }
